@@ -1,0 +1,56 @@
+@page
+@model WebdevProjectStarterTemplate.Pages.Login
+ 
+
+@{
+    
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<h3>Login Form</h3>
+<div class="row">
+    <div class="col-lg-9 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Login</h2>
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Username</label>
+                <input class="form-control" asp-for="@Model.UserName">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Password</label>
+                <input class="form-control" asp-for="@Model.Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="row">
+                <div class="offset-sm-4" col-sm-8>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+@* *@
+@* @Model.Msg *@
+@* <form method="post" asp-page="Index"> *@
+@*     <table> *@
+@*         <tr> *@
+@*             <td> Username</td> *@
+@*             <td><input type="text" asp-for="@Model.UserName"/></td> *@
+@*         </tr> *@
+@* *@
+@*         <tr> *@
+@*             <td>Password</td> *@
+@*             <td><input type="password" asp-for="@Model.Password"/></td> *@
+@*         </tr> *@
+@*         <td>&nbsp;</td> *@
+@*         <td><input type="submit" value="Login"/></td> *@
+@*     </table> *@
+@* </form> *@
