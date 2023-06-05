@@ -12,6 +12,10 @@ public class Register : PageModel
     [BindProperty]
     [Required(ErrorMessage = "A password is required")]
     public string Password { get; set; } = "";
+    [BindProperty]
+    [Required(ErrorMessage = "The password does not match"), Compare(nameof(Password))] //Checkt of het de zelfde input is.
+    public string PasswordCheck { get; set; }
+    
 
     [BindProperty]
     [Required(ErrorMessage = "A emailadress is required")]
@@ -34,6 +38,9 @@ public class Register : PageModel
             errorMessage = "Data validation failed";
             return;
         }
+
+        if (Password.Length >= 8) return;
+        ModelState.AddModelError("Password", "password vol");
 
         succesMessage = "Validation approved";
     }

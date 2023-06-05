@@ -1,3 +1,17 @@
 ﻿@{
     Layout = "_Layout";
+
+    string path = Context.Request.Path.Value;
+    if (!path.Contains("/login"))
+    {
+        var x = Context.Session.GetString("Username");
+        if (x == null)
+        {
+            Context.Response.Redirect("login");
+        } // Hiermee komt op elke pagina terug wie er is ingelogd ipv op elke pagina apart aanvragen naar sessie. 
+        
+    }
+    
+
 }
+

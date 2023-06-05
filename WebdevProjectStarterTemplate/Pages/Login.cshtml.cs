@@ -27,13 +27,13 @@ public class Login : PageModel
         if (UserName.Equals("Senna") && Password.Equals("123"))
         {
             HttpContext.Session.SetString("Username", UserName);
-            return RedirectToPage("Welcome");
+            return RedirectToPage("Index");
         }
-        else // Werkt niet?
+        else 
         {
             Msg = "Invalid";
-            return RedirectToPage("Index");
-
+            return RedirectToPage("Login");
+    
         }
     }
 }

@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,6 +33,8 @@ app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseCookiePolicy();
 
 app.MapRazorPages();
 

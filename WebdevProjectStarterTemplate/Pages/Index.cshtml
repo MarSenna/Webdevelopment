@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<h1>Welcome @Model.UserName</h1>
 <div class="text-center">
     <h1><a asp-page="Categories/Index">CRUD Categorie voorbeeld</a></h1>
     <p>Voor code zie directory: Pages/Categories</p>
 </div>
+
 
 <div class="text-center">
     <h1><a asp-page="@nameof(DisplayProducts)">Weergave van producten</a></h1>
@@ -17,7 +18,3 @@
         Zie de repositories voor bijbehorende SQL code (LEFT JOIN en JOIN)</p>
 </div>
 
-@* <div class="text-center"> *@
-@*     <h1 class="display-4">Welcome</h1> *@
-@*     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
-@* </div> *@
