@@ -1,0 +1,17 @@
+@page
+@model WebdevProjectStarterTemplate.Pages.Bestellen
+
+
+<div class="row mt-3">
+    <div class="col">
+        @foreach (var category in Model.Categories)
+        {
+            @if (category.Products.Any())
+            {
+                <li class="list-group-item">@category.Name</li>
+            }
+        }
+    </div>
+</div>
+
+

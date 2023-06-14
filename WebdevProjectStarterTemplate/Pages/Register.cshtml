@@ -7,8 +7,8 @@
         <form method="post">
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Username</label>
-                <input class="form-control" asp-for="UserName">
-                <span asp-validation-for="UserName" class="text-danger"></span>
+                <input class="form-control" asp-for="Username">
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
             <div class="row mb-3">
@@ -19,16 +19,16 @@
 
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Repeat password</label>
-                <input class="form-control" asp-for="Password">
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <input class="form-control" asp-for="PasswordCheck">
+                <span asp-validation-for="PasswordCheck" class="text-danger"></span>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Email</label>
-                <input class="form-control" asp-for="Email">
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <input class="form-control" asp-for="Mail">
+                <span asp-validation-for="Mail" class="text-danger"></span>
             </div>
-
+            @* <div class="div">@Model.Message</div> *@
             <div class="row">
                 <div class="offset-sm-4" col-sm-8>
                     <button type="submit" class="btn btn-primary">Submit</button>

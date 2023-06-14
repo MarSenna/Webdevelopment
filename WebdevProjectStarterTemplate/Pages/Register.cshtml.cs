@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebdevProjectStarterTemplate.Models;
+using WebdevProjectStarterTemplate.Repositories;
 
 namespace WebdevProjectStarterTemplate.Pages;
 
@@ -8,7 +10,7 @@ public class Register : PageModel
 {
     [BindProperty]
     [Required(ErrorMessage = "A username is required")]
-    public string UserName { get; set; } = "";
+    public string Username { get; set; } = "";
     [BindProperty]
     [Required(ErrorMessage = "A password is required")]
     public string Password { get; set; } = "";
@@ -19,29 +21,51 @@ public class Register : PageModel
 
     [BindProperty]
     [Required(ErrorMessage = "A emailadress is required")]
-    public string Email { get; set; } = "";
+    public string Mail { get; set; } = "";
     
     
     public string succesMessage = "";
     public string errorMessage = "";
-        
+    // public string Message { get; set; }
 
     public void OnGet()
     {
         
     }
 
-    public void OnPost()
+    public IActionResult OnPost()
     {
-        if (!ModelState.IsValid)
+        
+
+        if (Password.Length < 8)
         {
-            errorMessage = "Data validation failed";
-            return;
+            ModelState.AddModelError("Password", "password te kort");
         }
+        
 
-        if (Password.Length >= 8) return;
-        ModelState.AddModelError("Password", "password vol");
+        // if (ModelState.IsValid)
+        // {
+        //     //correct
+        //     // return RedirectToPage("Index");
+        // }
 
-        succesMessage = "Validation approved";
+        // return Page();
+
+        var register = new RegisterRepository();
+        int count = register.count(Username);
+        if (count > 0)
+        {
+            errorMessage = "biem";
+        }
+        else
+        {
+            register.Set(Username, Password, Mail);
+            // Message = "Je bent nu geregistreerd, je kunt nu inloggen";
+            // return new RedirectToPageResult("/Index"); 
+        }
+        // return RedirectToPage("Index");
+        //
+        // return Page();
+        return new RedirectToPageResult("/Index"); 
     }
 }
