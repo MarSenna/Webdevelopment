@@ -21,6 +21,14 @@ namespace WebdevProjectStarterTemplate.Repositories
             return category;
         }
 
+        public IEnumerable<Category> GetCategories ()
+        {
+            string sql = "SELECT * FROM Category";
+            using var connection = GetConnection();
+            var category = connection.Query<Category>(sql);
+            return category;
+        }
+
         public IEnumerable<Category> Get()
         {
             string sql = "SELECT * FROM Category ORDER BY Name";
@@ -29,7 +37,7 @@ namespace WebdevProjectStarterTemplate.Repositories
             var categories = connection.Query<Category>(sql);
             return categories;
         }
-
+        
         
         
         public IEnumerable<Category> GetCategoriesWithProducts()
@@ -78,6 +86,7 @@ namespace WebdevProjectStarterTemplate.Repositories
             
             return result;
         }
+        
 
         public Category Add(Category? category)
         {

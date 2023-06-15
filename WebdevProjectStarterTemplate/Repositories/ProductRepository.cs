@@ -30,4 +30,26 @@ public class ProductRepository
         );
         return productsWithCategory;
     }
+    
+    public IEnumerable<Product> GetProductByCategory(int CategoryId)
+    {
+        string sql = @"    SELECT * 
+                            FROM Product as P
+                                JOIN Category as C ON P.CategoryId = C.CategoryId 
+                                 WHERE P.CategoryId = @CategoryId
+                            ORDER BY C.Name, P.Name";
+            
+        using var connection = GetConnection();
+        var productsByCategory = connection.Query<Product, Category, Product>(
+            sql,
+            map: (product, category) =>
+            {
+                product.Category = category;
+                return product;
+            },
+            splitOn: "CategoryId",
+            param: new {CategoryId}
+        );
+        return productsByCategory;
+    }
 }

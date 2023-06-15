@@ -12,6 +12,14 @@ builder.Services.AddSession(); //toegevoegd
 
 builder.Services.AddMvc(); // toegevoegd
 
+// builder.Services.AddResponseCaching(); // toegevoegd
+
+// builder.Services.AddSession(options =>
+// {
+//     options.IdleTimeout = TimeSpan.FromMinutes(30);
+//     options.Cookie.Name = null; // toegevoegd
+// }); 
+
 var app = builder.Build();
 
 Program.Configuration = app.Configuration;

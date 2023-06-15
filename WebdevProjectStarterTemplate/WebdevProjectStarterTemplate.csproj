@@ -12,8 +12,10 @@
 
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.0.123" />
+      <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-preview.4.23259.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.4.23259.3" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0-preview.5.23280.8" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0-preview.4.23259.5" />
       <PackageReference Include="MySql.Data" Version="8.0.31" />
       <PackageReference Include="MySqlConnector" Version="2.3.0-beta.2" />

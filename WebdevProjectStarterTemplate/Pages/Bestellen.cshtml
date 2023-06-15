@@ -3,15 +3,44 @@
 
 
 <div class="row mt-3">
-    <div class="col">
+    <div class="Category" style="width: fit-content">
         @foreach (var category in Model.Categories)
         {
-            @if (category.Products.Any())
-            {
-                <li class="list-group-item">@category.Name</li>
-            }
+            //@if (category.Products.Any())
+            //{
+                <li class="list-group-item">@category.Name
+                    <a asp-route-categoryId="@category.CategoryId">+</a>
+                </li> 
+           
         }
     </div>
 </div>
+
+
+
+
+<div class="row mt-3">
+    <div class="col" style="width: fit-content">
+        @if (Model.ProductsInCategory != null)
+        {
+            @foreach (var product in Model.ProductsInCategory)
+            {
+                <li class="list-group-item">@product.Name
+                
+                    <form method="post"  asp-page-handler="Add">
+                        <input type="hidden" name="productId" value="@product.ProductId" asp-for="@product.ProductId"/>
+                        <button type="submit">Add</button>
+                    </form>
+                    </li>
+
+            }
+        }
+        
+    </div>
+</div>
+
+
+
+
 
 
