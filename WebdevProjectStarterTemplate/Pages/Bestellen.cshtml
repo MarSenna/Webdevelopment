@@ -1,4 +1,6 @@
 @page
+@using WebdevProjectStarterTemplate.Models
+@using WebdevProjectStarterTemplate.Repositories
 @model WebdevProjectStarterTemplate.Pages.Bestellen
 
 
@@ -31,13 +33,31 @@
                         <input type="hidden" name="productId" value="@product.ProductId" asp-for="@product.ProductId"/>
                         <button type="submit">Add</button>
                     </form>
-                    </li>
+                </li>
 
             }
         }
         
     </div>
 </div>
+
+
+<div class="col mt-3" style="width: fit-content">  
+    @if (Model.OrderLine != null)
+    {
+        @foreach (var order in Model.OrderLine)
+        {
+            <li class="list-group-item">@order.ProductId</li> // naam. join 
+            <form method="post" asp-page-handler="Bestellen">
+                <input type="hidden" name="ProductId" value="@order.ProductId" asp-for="@order.ProductId"/>
+                <button type="button" value="Increment" name="Action" >+</button>
+                <input type="number" value="@order.Amount"/>
+                <button type="button" value="Decrement" name="Action" >-</button>
+            </form>                                            
+        }
+    }
+
+    </div>
 
 
 

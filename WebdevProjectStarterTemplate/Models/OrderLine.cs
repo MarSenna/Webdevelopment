@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebdevProjectStarterTemplate.Models;
 
@@ -12,4 +13,6 @@ public class OrderLine
     public int TableId { get; set; }
     [Required]
     public int Amount { get; set; }
+    
+
 }

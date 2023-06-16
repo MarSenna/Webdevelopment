@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebdevProjectStarterTemplate.Models;
@@ -10,6 +11,8 @@ public class Bestellen : PageModel
 {
     public IEnumerable<Category> Categories { get; set; } = null!;
     public IEnumerable<Product>? ProductsInCategory { get; set; } = null;
+    
+    public IEnumerable<OrderLine>? OrderLine { get; set; }
     
   
     public void OnGet(int? categoryId)
@@ -28,6 +31,8 @@ public class Bestellen : PageModel
         {
             ProductsInCategory = new ProductRepository().GetProductByCategory(categoryIdFromSession.Value); //SELECT * FROM Product WHERE CategoryId = @CategoryId
         }
+
+        OrderLine = new OrderRepository().GetOrder(); // set orderline
     }
     
     //page handler
