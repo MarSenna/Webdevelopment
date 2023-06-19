@@ -9,10 +9,14 @@ namespace WebdevProjectStarterTemplate.Pages;
 
 public class Bestellen : PageModel
 {
+
+
     public IEnumerable<Category> Categories { get; set; } = null!;
     public IEnumerable<Product>? ProductsInCategory { get; set; } = null;
+    public IEnumerable<OrderLine>? OrderLine { get; set; } // set orderline
     
-    public IEnumerable<OrderLine>? OrderLine { get; set; }
+
+
     
   
     public void OnGet(int? categoryId)
@@ -42,9 +46,32 @@ public class Bestellen : PageModel
         new OrderRepository().Add(productId);
         //bestelling toevoegen of updaten in ROderLine
         return RedirectToPage(nameof(Bestellen));
-    } 
+    }
 
-  
+        
 
-    // vieuwBag.Id = HttpContext.Session.GetInt32("Id");
+    public IActionResult OnPostBestellen(int ProductId, string Action)
+    {
+        int tafelId = 1;
+        int Amount = 0;
+        if (Action == "Increment")
+        {
+            Amount = 1;
+        }
+        else if (Action == "Decrement")
+        {
+            Amount = -1;
+        }
+        new OrderRepository().Order(ProductId, tafelId, Amount);
+        return RedirectToPage(nameof(Bestellen));
+
+        
+    }
+    
+    public void OnPostDecrement()
+    {
+        new OrderRepository().GetOrder();
+    }
+
+
 }

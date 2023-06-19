@@ -27,8 +27,8 @@
         {
             @foreach (var product in Model.ProductsInCategory)
             {
-                <li class="list-group-item">@product.Name
-                
+                <li class="list-group-item">@product.Name, @product.Price
+
                     <form method="post"  asp-page-handler="Add">
                         <input type="hidden" name="productId" value="@product.ProductId" asp-for="@product.ProductId"/>
                         <button type="submit">Add</button>
@@ -47,12 +47,12 @@
     {
         @foreach (var order in Model.OrderLine)
         {
-            <li class="list-group-item">@order.ProductId</li> // naam. join 
+            <li class="list-group-item">@order.Name</li> // naam. join 
             <form method="post" asp-page-handler="Bestellen">
                 <input type="hidden" name="ProductId" value="@order.ProductId" asp-for="@order.ProductId"/>
-                <button type="button" value="Increment" name="Action" >+</button>
+                <button type="submit" value="Decrement" name="Action" >-</button>
                 <input type="number" value="@order.Amount"/>
-                <button type="button" value="Decrement" name="Action" >-</button>
+                <button type="submit" value="Increment" name="Action" >+</button>
             </form>                                            
         }
     }

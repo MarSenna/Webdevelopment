@@ -13,6 +13,7 @@ public class OrderLine
     public int TableId { get; set; }
     [Required]
     public int Amount { get; set; }
+    public string Name { get; set; }
     
-
+    public decimal Price { get; set; }
 }
