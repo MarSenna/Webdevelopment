@@ -1,6 +1,7 @@
 using System.Data;
 using Dapper;
 using WebdevProjectStarterTemplate.Models;
+using WebdevProjectStarterTemplate.Pages;
 
 namespace WebdevProjectStarterTemplate.Repositories;
 
@@ -53,7 +54,7 @@ public class OrderRepository
         return connection.Query<OrderLine>(sql, new {TableId}).ToList();
     }
     
-    public void Order(int ProductId, int TableId, int AmountAdd)
+    public void Order(int ProductId, int TableId, int AmountAdd) // Increment en decrement
     {
         var connection = GetConnection();
         string sql;
@@ -81,6 +82,13 @@ public class OrderRepository
             sql = @"INSERT INTO orderLine (TableId, ProductId, Amount, AmountPaid) VALUES (@TableId, @ProductId, 1, 0)";
             connection.Execute(sql, new {ProductId, TableId});
         }
-        
+    }
+
+    public List<OrderLine> Overzicht(int TableId) 
+    {
+        string sql =
+            @"SELECT product.Name, product.Price, orderline.Amount, orderline.ProductId FROM product INNER JOIN orderline ON product.ProductId = orderline.ProductId WHERE orderline.TableId = @TableId ";
+            using var connection = GetConnection();
+            return connection.Query<OrderLine>(sql, new {TableId}).ToList();
     }
 }

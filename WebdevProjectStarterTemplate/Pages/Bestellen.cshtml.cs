@@ -13,7 +13,7 @@ public class Bestellen : PageModel
 
     public IEnumerable<Category> Categories { get; set; } = null!;
     public IEnumerable<Product>? ProductsInCategory { get; set; } = null;
-    public IEnumerable<OrderLine>? OrderLine { get; set; } // set orderline
+    public IEnumerable<OrderLine>? OrderLine { get; set; } // set orderline repo
     
 
 
@@ -54,7 +54,7 @@ public class Bestellen : PageModel
     {
         int tafelId = 1;
         int Amount = 0;
-        if (Action == "Increment")
+        if (Action == "Increment") 
         {
             Amount = 1;
         }
@@ -68,10 +68,6 @@ public class Bestellen : PageModel
         
     }
     
-    public void OnPostDecrement()
-    {
-        new OrderRepository().GetOrder();
-    }
 
 
 }
