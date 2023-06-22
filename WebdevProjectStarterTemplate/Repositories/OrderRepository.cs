@@ -1,5 +1,6 @@
 using System.Data;
 using Dapper;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebdevProjectStarterTemplate.Models;
 using WebdevProjectStarterTemplate.Pages;
 
@@ -91,4 +92,13 @@ public class OrderRepository
             using var connection = GetConnection();
             return connection.Query<OrderLine>(sql, new {TableId}).ToList();
     }
+
+    public float Totaal(int TableId)
+    {
+        string sql = @"SELECT SUM(product.Price * orderline.Amount) 'Total' FROM orderline INNER JOIN product ON product.ProductId = orderline.ProductId WHERE TableId = @TableId";
+        using var connection = GetConnection();
+        return connection.Query<float>(sql, new {TableId}).Sum();
+    }
+
 }
+

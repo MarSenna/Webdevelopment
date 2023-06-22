@@ -8,11 +8,13 @@ namespace WebdevProjectStarterTemplate.Pages;
 public class Overzicht : PageModel
 {
     public IEnumerable<OrderLine>? OrderLine { get; set; }
+    public float Total { get; set; }
     public int TableId = 1;
-    
+
     public void OnGet()
     {
-        OrderLine = new OrderRepository().Overzicht(TableId); 
+        OrderLine = new OrderRepository().Overzicht(TableId);
+        Total = new OrderRepository().Totaal(TableId);
     }
     
 

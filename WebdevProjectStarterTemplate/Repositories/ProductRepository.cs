@@ -52,4 +52,47 @@ public class ProductRepository
         );
         return productsByCategory;
     }
+    
+    public Product Get(int productId)
+    {
+        string sql = "SELECT * FROM Product WHERE ProductId = @ProductId";
+            
+        using var connection = GetConnection();
+        Product product = connection.QuerySingle<Product>(sql, new { productId });
+        return product;
+    }
+    
+    public Product Add(Product? product)
+    {
+        string sql = @"
+                INSERT INTO Product (Name, Price, CategoryId) 
+                VALUES (@Name, @Price, @CategoryId); 
+                SELECT * FROM Product WHERE ProductId = LAST_INSERT_ID()";
+            
+        using var connection = GetConnection();
+        var addedProduct = connection.QuerySingle<Product>(sql, product);
+        return addedProduct;
+    }
+    
+    public bool Delete(int ProductId)
+    {
+        string sql = @"DELETE FROM Product WHERE ProductId = @ProductId";
+            
+        using var connection = GetConnection();
+        int numOfEffectedRows = connection.Execute(sql, new { ProductId });
+        return numOfEffectedRows == 1;
+    }
+    
+    public Product Update(Product product)
+    {
+        string sql = @"
+                UPDATE Product SET 
+                    Name = @Name, Price = @Price, CategoryId = @CategoryId
+                WHERE ProductId = @ProductId;
+                SELECT * FROM Product WHERE ProductId = @ProductId";
+            
+        using var connection = GetConnection();
+        var updatedProduct = connection.QuerySingle<Product>(sql, product);
+        return updatedProduct;
+    }
 }
