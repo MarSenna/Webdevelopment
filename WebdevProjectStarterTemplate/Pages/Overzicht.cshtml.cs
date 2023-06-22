@@ -13,7 +13,7 @@ public class Overzicht : PageModel
 
     public void OnGet()
     {
-        OrderLine = new OrderRepository().Overzicht(TableId);
+        OrderLine = new OrderRepository().OverzichtTotaal(TableId);
         Total = new OrderRepository().Totaal(TableId);
     }
     

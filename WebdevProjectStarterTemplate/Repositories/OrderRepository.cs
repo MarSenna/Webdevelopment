@@ -99,6 +99,15 @@ public class OrderRepository
         using var connection = GetConnection();
         return connection.Query<float>(sql, new {TableId}).Sum();
     }
+    
+    
+    public List<OrderLine> OverzichtTotaal(int TableId) 
+    {
+        string sql =
+            @"SELECT product.Name, product.Price, orderline.Amount, orderline.ProductId, orderline.AmountPaid, (product.Price * orderline.Amount) as 'Subtotaal' FROM product INNER JOIN orderline ON product.ProductId = orderline.ProductId WHERE orderline.TableId = @TableId ";
+        using var connection = GetConnection();
+        return connection.Query<OrderLine>(sql, new {TableId}).ToList();
+    }
 
 }
 
