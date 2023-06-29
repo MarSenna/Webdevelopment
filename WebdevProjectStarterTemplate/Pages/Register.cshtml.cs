@@ -41,26 +41,22 @@ public class Register : PageModel
         {
             ModelState.AddModelError("Password", "password te kort");
         }
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
         
-
-        // if (ModelState.IsValid)
-        // {
-        //     //correct
-        //     // return RedirectToPage("Index");
-        // }
-
-        // return Page();
-
         var register = new RegisterRepository();
         int count = register.count(Username);
         if (count > 0)
         {
-            errorMessage = "biem";
+            ModelState.AddModelError("Username", "Gebruiker bestaat al");
+            return Page();
         }
         else
         {
             register.Set(Username, Password, Mail);
-            // Message = "Je bent nu geregistreerd, je kunt nu inloggen";
+            // Message = "Je bent geregistreerd, je kunt nu inloggen";
             // return new RedirectToPageResult("/Index"); 
         }
         // return RedirectToPage("Index");

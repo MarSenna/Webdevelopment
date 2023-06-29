@@ -8,14 +8,25 @@
         {
             @foreach (var orderLine in Model.OrderLine)
             {
+                
                 <ul class="list-group">
                     <li class="list-group-item"> <b>Name:</b> @orderLine.Name</li>
                     <li class="list-group-item"> <b>Price:</b> @orderLine.Price</li>
-                    <li class="list-group-item"> <b>Amount:</b> @orderLine.Amount</li>
-                    <li class="list-group-item"> <b>Subtotal::</b> @orderLine.Subtotaal</li>
+                    <li class="list-group-item"> <form method="post" asp-page-handler="Bestellen">
+                                                                 <input type="hidden" name="ProductId" value="@orderLine.ProductId" asp-for="@orderLine.ProductId"/>
+                                                                 <button type="submit" value="Decrement" name="Action" >-</button>
+                                                                 <input type="number" value="@orderLine.Amount"/>
+                                                                 <button type="submit" value="Increment" name="Action" >+</button>
+                                                             </form>  </li>
+                    <li class="list-group-item"> <b>Subtotal:</b> @orderLine.Subtotaal</li>
                 </ul>
             }
         }
     </div>
 </div>
-<b>Totaal: @Model.Total </b>
+<b>Totaal  €@Model.Total </b>
+
+
+
+<h1><a asp-page="@nameof(CheckOut)" asp-route-TableId="@Model.TableId">/CheckOut</a></h1>
+

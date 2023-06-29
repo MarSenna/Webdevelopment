@@ -109,5 +109,19 @@ public class OrderRepository
         return connection.Query<OrderLine>(sql, new {TableId}).ToList();
     }
 
+    
+    public bool RemoveOrder(int TableId)
+    {
+        string sql = @"
+                DELETE FROM orderline
+                WHERE TableId = @TableId;";
+
+        using var connection = GetConnection();
+        int OrderRemoved = connection.Execute(sql, param:new {TableId});
+        return OrderRemoved == 1;
+    }
+    
+
+
 }
 

@@ -23,7 +23,7 @@ public class RegisterRepository
 
     public int count(string Username)
     {
-        string sql = "SELECT COUNT(UserId) FROM gebruiker WHERE Username= @Username";
+        string sql = @"SELECT COUNT(UserId) FROM gebruiker WHERE Username= @Username";
         using var connection = GetConnection();
         int count = connection.ExecuteScalar<int>(sql, new { Username });
         return count;

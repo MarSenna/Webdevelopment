@@ -29,4 +29,8 @@
       <AdditionalFiles Include="Pages\Products\Update.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Register" />
+    </ItemGroup>
+
 </Project>

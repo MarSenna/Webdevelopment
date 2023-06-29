@@ -2,7 +2,7 @@
     Layout = "_Layout";
 
     string path = Context.Request.Path.Value;
-    if (!path.Contains("/login"))
+    if (!path.Contains("/login")  && !path.Contains("/register"))
     {
         var x = Context.Session.GetString("Username");
         if (x == null)

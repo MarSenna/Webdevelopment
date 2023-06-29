@@ -1,0 +1,39 @@
+@page "{TableId:int}"
+@using WebdevProjectStarterTemplate.Models
+@using WebdevProjectStarterTemplate.Repositories
+@model WebdevProjectStarterTemplate.Pages.CheckOut
+
+
+
+<div class="row mt-3">
+    <div class="col" style="width: fit-content">
+        @if (Model.OrderLine != null)
+        {
+            @foreach (var orderLine in Model.OrderLine)
+            {
+                <ul class="list-group">
+                    <li class="list-group-item"> <b>Name:</b> @orderLine.Name</li>
+                    <li class="list-group-item"> <b>Price:</b> @orderLine.Price</li>
+                    <li class="list-group-item"> <b>Amount:</b> @orderLine.Amount</li>
+                    <li class="list-group-item"> <b>Subtotal:</b> @orderLine.Subtotaal</li>
+                </ul>
+            }
+        }
+    </div>
+</div>
+<b>Totaal  €@Model.Total </b>
+
+
+
+
+<div class="row">
+    <div class="col">
+        <h1>Are you sure?</h1>
+        <hr>
+        <form method="POST">
+            <input type="hidden" value="TableId"/>
+            <button asp-page-handler="Delete"  asp-route-TableId="@Model.TableId" type="submit" class="btn btn-success">Yes</button>
+            <button asp-page-handler="Cancel" class="btn btn-danger">Cancel</button>
+        </form>        
+    </div>
+</div>

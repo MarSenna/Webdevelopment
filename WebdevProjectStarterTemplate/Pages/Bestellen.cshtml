@@ -4,7 +4,7 @@
 @model WebdevProjectStarterTemplate.Pages.Bestellen
 
 
-<div class="row mt-3">
+<div class="col-md-3 ">
     <div class="Category" style="width: fit-content">
         @foreach (var category in Model.Categories)
         {
@@ -21,8 +21,8 @@
 
 
 
-<div class="row mt-3">
-    <div class="col" style="width: fit-content">
+
+    <div class="col-md-3" style="width: fit-content">
         @if (Model.ProductsInCategory != null)
         {
             @foreach (var product in Model.ProductsInCategory)
@@ -39,7 +39,7 @@
         }
         
     </div>
-</div>
+
 
 
 <div class="col mt-3" style="width: fit-content">  
@@ -56,11 +56,10 @@
             </form>                                            
         }
     }
-    
+     </div>
 <form method="get">
     <button type="submit" asp-page="./Overzicht">Bestelling afronden</button>
 </form>
-</div>
 
 
 
